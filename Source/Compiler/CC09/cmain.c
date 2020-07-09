@@ -36,13 +36,10 @@ char **argv;
 
 #ifdef unix
         signal(2,tidy);
-        // gcc doesn't like mktemp -- mkstemp creates and opens the file
-        close(mkstemp(strname));  /* Close it */
-        unlink(strname);          // The file will be created if needed
 #else
         intercept(tidy);
-        mktemp(strname);
 #endif
+        mktemp(strname);
 
         sdummy.type = INT;
         sdummy.size = 2;
